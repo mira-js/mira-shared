@@ -2,13 +2,17 @@ import { z } from 'zod'
 
 // ─── Sources ─────────────────────────────────────────────────────────────────
 
-export enum Source {
-  reddit = 'reddit',
-  hackernews = 'hackernews',
-  news = 'news'
-}
+// Known core source identifiers — use these in core collectors.
+// Community collectors pass any string slug (e.g. 'capterra').
+export const CoreSource = {
+  reddit: 'reddit',
+  hackernews: 'hackernews',
+  news: 'news',
+} as const
 
-export const SourceSchema = z.nativeEnum(Source)
+export type CoreSourceValue = typeof CoreSource[keyof typeof CoreSource]
+
+export const SourceSchema = z.string().min(1)
 
 // ─── Collected item (common schema across all collectors) ─────────────────────
 
@@ -18,7 +22,7 @@ export interface Engagement {
 }
 
 export interface CollectedItem {
-  source: Source
+  source: string
   url: string
   title: string
   body: string
@@ -58,7 +62,7 @@ export type JobStatus = 'queued' | 'active' | 'completed' | 'failed'
 
 export interface ResearchJobInput {
   query: string
-  sources?: Source[]
+  sources?: string[]
   depth?: ResearchDepth
 }
 
@@ -73,7 +77,7 @@ export interface ResearchJob extends ResearchJobInput {
 // ─── Research result ──────────────────────────────────────────────────────────
 
 export interface Evidence {
-  source: Source
+  source: string
   url: string
   excerpt: string
 }
@@ -81,7 +85,7 @@ export interface Evidence {
 export interface PainPointTheme {
   theme: string
   frequency: number
-  sources: Source[]
+  sources: string[]
   sentiment: number  // -1.0 to 1.0
   evidence: Evidence[]
 }
