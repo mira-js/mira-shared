@@ -1,18 +1,18 @@
-# @mia/shared-core
+# @mira/shared-core
 
-[![npm](https://img.shields.io/npm/v/@mia/shared-core)](https://www.npmjs.com/package/@mia/shared-core)
-[![License: AGPL-3.0](https://img.shields.io/badge/license-AGPL--3.0-blue.svg)](https://github.com/mira-js/mia-core/blob/main/LICENSE)
+[![npm](https://img.shields.io/npm/v/@mira/shared-core)](https://www.npmjs.com/package/@mira/shared-core)
+[![License: AGPL-3.0](https://img.shields.io/badge/license-AGPL--3.0-blue.svg)](https://github.com/mira-js/mira-core/blob/main/LICENSE)
 
-Shared TypeScript types for the MIA ecosystem. This is the contract between collectors, the analysis pipeline, and API consumers. If you are writing a custom collector or consuming the API in TypeScript, this is the only package you need.
+Shared TypeScript types for the MIRA ecosystem. This is the contract between collectors, the analysis pipeline, and API consumers. If you are writing a custom collector or consuming the API in TypeScript, this is the only package you need.
 
 ---
 
 ## Install
 
 ```bash
-npm install @mia/shared-core
+npm install @mira/shared-core
 # or
-pnpm add @mia/shared-core
+pnpm add @mira/shared-core
 ```
 
 ---
@@ -22,7 +22,7 @@ pnpm add @mia/shared-core
 ### Sources
 
 ```ts
-import { CoreSource } from '@mia/shared-core'
+import { CoreSource } from '@mira/shared-core'
 
 CoreSource.reddit      // 'reddit'
 CoreSource.hackernews  // 'hackernews'
@@ -176,7 +176,7 @@ interface OpenVikingFindOptions { scope: string; maxResults: number; layers: ('L
 ## Writing a custom collector
 
 ```ts
-import type { Collector, CollectorOptions, CollectedItem } from '@mia/shared-core'
+import type { Collector, CollectorOptions, CollectedItem } from '@mira/shared-core'
 
 export class LobstersCollector implements Collector {
   async collect({ query, limit = 25 }: CollectorOptions): Promise<CollectedItem[]> {
@@ -199,6 +199,6 @@ export class LobstersCollector implements Collector {
 
 ---
 
-## Part of mia-core
+## Part of mira-core
 
-This package is part of the [mia-core](https://github.com/mira-js/mia-core) monorepo — a self-hostable market intelligence engine.
+This package is part of the [mira-core](https://github.com/mira-js/mira-core) monorepo — a self-hostable market intelligence engine.
